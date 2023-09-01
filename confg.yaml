@@ -1,0 +1,54 @@
+
+
+controls:
+  base: # name, for direct control
+    type: servo
+    pin: 0 # servo control pin
+    range: 270 # range of motion in degrees
+    pulse: # pulse width, in ms
+      min: 0.5
+      max: 2.5
+  arm:
+    type: servo
+    pin: 1
+    range: 270
+    pulse:
+      min: 0.5
+      max: 2.5
+  forearm:
+    type: servo
+    pin: 2
+    range: 360
+    pulse:
+      min: 0.5
+      max: 2.5
+  finger: 
+    type: actuator
+    pins:
+      hi: 3 # actuator active high
+      lo: 4 # actuator active low
+
+
+# z is up, x is forward, y is to the right
+# angles are in degrees, other units are in inches
+
+ik:
+  - control: base
+    axis: z
+    angle: 0 # default (assumed to put next arm in the correct position)
+  - z: 2.32
+    y: 0
+    x: 0
+  - control: arm
+    axis: "y" # y defaults to yes in yaml, it's dumb
+    angle: 90 # default (assumed to put next arm in correct position)
+  - z: 18
+    y: 0
+    x: 0
+  - control: forearm
+    axis: "y" # y defaults to yes in yaml, it's dumb
+    angle: 90
+  - z: 10
+    y: 0
+    x: 0
+
