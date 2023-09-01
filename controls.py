@@ -78,8 +78,6 @@ for value in config["ik"]:
         val = np.dot(rot, np.array([value["x"], value["y"], value["z"]]))
         ik_params.append(list(val))
 
-print(ik_params)
-
 # DO NOT IMPORT UNLESS YOU KNOW WHAT YOU ARE DOING
 ik = Actuator(ik_params)
 
@@ -106,7 +104,7 @@ def moveTo(x, y, z):
 
 if __name__ == "__main__":
     while True:
-        inp = input("(x y z | exit)> ").trim()
+        inp = input("(x y z | exit)> ").strip()
 
         if inp == "exit":
             break
@@ -116,4 +114,4 @@ if __name__ == "__main__":
         vals = getIK(x, y, z)
 
         for key, value in vals.items():
-            print(f"{key}: {np.rad2deg(value)} deg")
+            print(f"{key}: {np.rad2deg(value):.4f} deg")
