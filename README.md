@@ -1,6 +1,6 @@
 ## Requirements
 
-This thing requires the libraries
+This thing requires the libraries in `requirements.txt`, as follows:
 
 - [gpiozero](https://pypi.org/project/gpiozero/) ~= 1.6.2
 - [tinyik](https://pypi.org/project/tinyik/) ~= 2.2.1
