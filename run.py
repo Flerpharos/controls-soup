@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from yaml import load, Loader
 from controls import controls, moveTo
 from gpiozero.pins.rpigpio import RPiGPIOFactory
