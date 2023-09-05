@@ -1,7 +1,7 @@
 from yaml import load, Loader
 from gpiozero import Device, AngularServo, Motor
 from gpiozero.pins.mock import MockFactory, MockPWMPin
-from tinyik import Actuator, visualize
+from tinyik import Actuator
 import numpy as np
 
 if __name__ == "__main__":

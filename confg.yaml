@@ -52,3 +52,12 @@ ik:
     y: 0
     x: 0
 
+## run.py config
+inputs:
+  type: "ik" # options are positional, ik, select
+  x: 0 # ADC channels
+  y: 0
+  z: 0
+  vel: 3 # degrees
+  button: 0 # GPIO pin
+

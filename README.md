@@ -47,29 +47,44 @@ This thing requires the libraries
 This script uses `confg.yaml` for configuration.
 
 ```yaml
-controls:           # This is where all the controls are defined
-  name:             # The name of a control
-    type: servo     # Required - type of control. servos map to `AngularServo`
-    pin: 0          # Required - The GPIO pin for servos. MUST be PWN-enabled
-    range: 180      # Required - The range of motion. Servos initialize at 0 deg
+controls:               # This is where all the controls are defined
+  name:                 # The name of a control
+    type: servo         # Required - type of control. servos map to `AngularServo`
+    pin: 0              # Required - The GPIO pin for servos. MUST be PWN-enabled
+    range: 180          # Required - The range of motion. Servos initialize at 0 deg
     pulse:
-      min: 0.5      # Required - Min pulse length for servo control, in ms
-      max: 2.5      # Required - Max pulse length for servo control, in ms
+      min: 0.5          # Required - Min pulse length for servo control, in ms
+      max: 2.5          # Required - Max pulse length for servo control, in ms
   name:
-    type: actuator  # Required - actuators map to `Motor`
+    type: actuator      # Required - actuators map to `Motor`
     pins:
-      hi: 0         # Required - Active High pin for h-bridge
-      lo: 0         # Required - Active Low pin for h-bridge
+      hi: 0             # Required - Active High pin for h-bridge
+      lo: 0             # Required - Active Low pin for h-bridge
 
-ik:                 # IK configuration block. List of IK blocks
-  - control: name   # Required - name of control, corresponds to
-                    # name in `controls`
-    axis: x | "y" | z # Required - axis of control
-    angle: 0        # Optional - starting angle of motor. Use for easier
-                    # configuration when motors are mounted not directly in
-                    # line with the arm. In Degrees
+ik:                     # IK configuration block. List of IK blocks
+  - control: name       # Required - name of control, corresponds to
+                        #   name in `controls`
+    axis: x | "y" | z   # Required - axis of control
+    angle: 0            # Optional - starting angle of motor. Use for easier
+                        #   configuration when motors are mounted not directly in
+                        #   line with the arm. In Degrees
 
-  - x: 0            # Required - X length of arm
-    y: 0            # Required - Y length of arm
-    z: 0            # Required - Z length of arm. Vertical Axis
+  - x: 0                # Required - X length of arm
+    y: 0                # Required - Y length of arm
+    z: 0                # Required - Z length of arm. Vertical Axis
+
+inputs:                 # Where the inputs for run.py are (manual controls)
+  button: 0             # Required - Pin for the button controlling the actuator
+  vel: 0.1              # Required - the velocity at which positions are interpolated
+                        #   in length for IK and SELECT, but degrees for POSITIONAL
+
+  type: positional | ik # Required - positional has each axis naively controlled by moving
+                        #   the servos, ik uses the IK system to get the servos' positions
+  x: 0                  # Required MCP3008 channel
+  y: 0                  # Required
+  z: 0                  # Required
+
+  type: select          # select is for control with only two axis joystick
+  select: 0             # Required - MCP3008 channel that is used for selecting the axis
+  main: 0               # Required - channel that is used for moving the axis
 ```
