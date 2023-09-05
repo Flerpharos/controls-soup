@@ -2,9 +2,10 @@
 
 This thing requires the libraries
 
-- [gpiozero](https://gpiozero.readthedocs.io/en/stable/index.html)
-- [tinyik](https://github.com/lanius/tinyik)
-- numpy
+- [gpiozero](https://pypi.org/project/gpiozero/) ~= 1.6.2
+- [tinyik](https://pypi.org/project/tinyik/) ~= 2.2.1
+- [numpy](https://pypi.org/project/numpy/) ~= 1.24.3
+- [PyYAML](https://pypi.org/project/PyYAML) ~= 6.0.1
 
 ## Setup
 
@@ -35,6 +36,9 @@ This thing requires the libraries
 
   - Enter `exit` to quit
   - Enter the target position in `<x> <y> <z>` format, the output will the intended positions of each servo in degrees
+
+- Basic controls can be accessed with `python run.py`
+  - Configuration for this is laid out in the `inputs` section in `confg.yaml`
 
 ## Types
 
