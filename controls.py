@@ -81,7 +81,6 @@ for value in config["ik"]:
 # DO NOT IMPORT UNLESS YOU KNOW WHAT YOU ARE DOING
 ik = Actuator(ik_params)
 
-
 # Import this to get IK support
 def getIK(x, y, z):
     ik.ee = [x, y, z]
@@ -93,13 +92,16 @@ def getIK(x, y, z):
 
     return controls
 
+# Import this to get a constrained angle
+def constrained_angle(servo, angle):
+    return min(servo.max_angle, min(servo.min_angle, angle))
 
 # Import this to move arm with IK
 def moveTo(x, y, z):
     _controls = getIK(x, y, z)
 
     for key, value in _controls.items():
-        controls[key].angle = np.rad2deg(value)
+        controls[key].angle = constrained_angle(controls[key], np.rad2deg(value))
 
 
 if __name__ == "__main__":
